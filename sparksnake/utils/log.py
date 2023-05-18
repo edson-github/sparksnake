@@ -45,9 +45,9 @@ def log_config(
     logger = logging.getLogger(logger_name)
     logger.setLevel(logger_level)
 
-    # Configurando formato das mensagens no objeto
-    log_format = "%(levelname)s;%(asctime)s;%(filename)s;"
-    log_format += "%(lineno)d;%(message)s"
+    log_format = (
+        "%(levelname)s;%(asctime)s;%(filename)s;" + "%(lineno)d;%(message)s"
+    )
     formatter = logging.Formatter(log_format,
                                   datefmt=logger_date_format)
 

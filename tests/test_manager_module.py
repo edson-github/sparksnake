@@ -396,7 +396,7 @@ def test_aggregating_data_with_sum_function_returns_expected_value(
         .select(numeric_col).collect()
 
     # Applying the sum on the result rows using Python
-    expected_result = sum([r[0] for r in value_rows])
+    expected_result = sum(r[0] for r in value_rows)
 
     # Collecting the result from the DataFrame after agg_data() method
     agg_result = df_agg.where(expr("boolean_field == True"))\

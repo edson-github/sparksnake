@@ -267,9 +267,9 @@ class SparkETLManager(ManagerClass):
         """
 
         try:
-            # Creating casting expressions based on data type of date_col arg
-            date_col_type = date_col_type.strip().lower()
             if cast_string_to_date:
+                # Creating casting expressions based on data type of date_col arg
+                date_col_type = date_col_type.strip().lower()
                 if date_col_type == "date":
                     casting_expr = f"to_date({date_col},\
                         '{date_format}') AS {date_col}_{date_col_type}"
@@ -286,7 +286,7 @@ class SparkETLManager(ManagerClass):
                     "*",
                     casting_expr
                 ).drop(date_col)\
-                    .withColumnRenamed(f"{date_col}_{date_col_type}", date_col)
+                        .withColumnRenamed(f"{date_col}_{date_col_type}", date_col)
 
         except ValueError as ve:
             logger.error(ve)
@@ -501,10 +501,7 @@ class SparkETLManager(ManagerClass):
         logger.info("Adding a new partition column to the DataFrame "
                     f"({partition_name}={str(partition_value)})")
         try:
-            df_partitioned = df.withColumn(partition_name,
-                                           lit(partition_value))
-            return df_partitioned
-
+            return df.withColumn(partition_name, lit(partition_value))
         except Exception as e:
             logger.error("Error on adding a partition colum to the DataFrame "
                          f"using the .withColumn() method. Exception: {e}")
@@ -555,7 +552,7 @@ class SparkETLManager(ManagerClass):
         """
 
         # Casting arg to integer to avoid exceptions
-        num_partitions = int(num_partitions)
+        num_partitions = num_partitions
 
         # Getting the current number of partitions of the given DataFrame
         logger.info("Getting the current number of partition of the DataFrame")
