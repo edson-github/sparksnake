@@ -277,18 +277,18 @@ class GlueJobManager():
 
                 # Getting non required args: push_down_predicate
                 push_down_predicate = self.data_dict[t]["push_down_predicate"]\
-                    if "push_down_predicate" in self.data_dict[t].keys()\
-                    else ""
+                        if "push_down_predicate" in self.data_dict[t].keys()\
+                        else ""
 
                 # Getting non required args: additional_options
                 additional_options = self.data_dict[t]["additional_options"] \
-                    if "additional_options" in self.data_dict[t].keys()\
-                    else {}
+                        if "additional_options" in self.data_dict[t].keys()\
+                        else {}
 
                 # Getting non required args: catalog_id
                 catalog_id = self.data_dict[t]["catalog_id"] \
-                    if "catalog_id" in self.data_dict[t].keys()\
-                    else None
+                        if "catalog_id" in self.data_dict[t].keys()\
+                        else None
 
                 # Reading the DynamicFrame
                 dyf = self.glueContext.create_dynamic_frame.from_catalog(
@@ -312,8 +312,7 @@ class GlueJobManager():
         sleep(0.01)
 
         # Creating a DynamicFrames dictionary
-        dynamic_dict = {k: dyf for k, dyf
-                        in zip(self.data_dict.keys(), dynamic_frames)}
+        dynamic_dict = dict(zip(self.data_dict.keys(), dynamic_frames))
         logger.info("Success on reading data. There are "
                     f"{len(dynamic_dict.values())} DynamicFrames available.")
 
